@@ -1,0 +1,1 @@
+g++ -o "/home/oracle/projects/TcpClient/bin/x64/Debug/TcpClient.out" -Wl,--no-undefined -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack /home/oracle/projects/TcpClient/obj/x64/Debug/main.o /home/oracle/projects/TcpClient/obj/x64/Debug/TcpSocket.o -lInterface -ljson -lcrypto

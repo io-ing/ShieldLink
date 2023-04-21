@@ -1,0 +1,18 @@
+syntax = "proto3";
+message RequestMsg
+{
+    int32 cmdType = 1;
+    bytes clientID = 2; // "hello.pem"
+    bytes serverID = 3;
+    bytes sign = 4;
+    bytes data = 5;
+}
+
+message RespondMsg
+{
+    bool status = 1;
+    int32 seckeyID = 2;
+    bytes clientID = 3;
+    bytes serverID = 4;
+    bytes data = 5;
+}

@@ -1,0 +1,21 @@
+﻿生成启动时间为 2019/6/21 16:30:42。
+     1>项目“C:\Users\Kevin\Desktop\socket-test\TcpServer\TcpServer\TcpServer.vcxproj”在节点 2 上(Build 个目标)。
+     1>InitializeBuildStatus:
+         正在对“C:\Users\Kevin\Desktop\socket-test\TcpServer\TcpServer\obj\ARM\Debug\TcpServer.tlog\unsuccessfulbuild”执行 Touch 任务。
+       _ValidateSources:
+         Validating sources
+       _CopySources:
+         Copying sources remotely to '192.168.247.135'
+     1>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Application Type\Linux\1.0\Linux.targets(162,5): error : Could not connect to the remote system. Please verify your connection settings, and that your machine is on the network and reachable.
+     1>已完成生成项目“C:\Users\Kevin\Desktop\socket-test\TcpServer\TcpServer\TcpServer.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+       “C:\Users\Kevin\Desktop\socket-test\TcpServer\TcpServer\TcpServer.vcxproj”(Build 目标) (1) ->
+       (_CopySources 目标) -> 
+         C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Application Type\Linux\1.0\Linux.targets(162,5): error : Could not connect to the remote system. Please verify your connection settings, and that your machine is on the network and reachable.
+
+    0 个警告
+    1 个错误
+
+已用时间 00:00:15.17
