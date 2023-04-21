@@ -1,48 +1,108 @@
-ServerSeckey服务端，配置文件为server.json和.sln文件放在一块
-ClientSecKey客户端，配置文件为client.json和.sln文件放在一块
-Interface内联接口
-socket-test主程序，业务代码，配置文件为tcpServer.json\tcpClient.json和.sln文件放在一块
+# Shield Link
 
-oracle-centos.sql为数据库文件
+[![GitHub issues](https://img.shields.io/github/issues/io-ing/shieldlink)](https://github.com/io-ing/shieldlink/issues)
+[![GitHub forks](https://img.shields.io/github/forks/io-ing/shieldlink)](https://github.com/io-ing/shieldlink/network)
+[![GitHub stars](https://img.shields.io/github/stars/io-ing/shieldlink)](https://github.com/io-ing/shieldlink/stargazers)
+[![GitHub license](https://img.shields.io/github/license/io-ing/shieldlink)](https://github.com/io-ing/shieldlink/blob/master/LICENSE)
 
+ShieldLink is a program written by C++, which provides a secure encrypted communication solution. Through different levels of key negotiation between the server and the client, asymmetric encryption is used to ensure the confidentiality of data transmission in the communication process. At the same time, the program can also record the key information to the database for subsequent use and management. The program also provides an external interface, which provides encryption protection for the communication of other programs.
 
+# Installation
 
+## Dependencies
 
-（二）项目工程介绍
-What is xxx?
+- C++ 11 or higher
+- OpenSSL library
+- Protobuf library
+- JSON library
+- Oracle client 11gR2
 
-安全传输平台是一个 C++ 编写的程序，服务端和客户端可以进行不同等级的密钥协商，记录密钥信息到 Oracle 数据库，为其他程序通信提供外联接口进行加密通信。
+## Environment
 
-此 README 文件包含 aaa 的编译说明，要想成功编译程序，需要安装 protobuf、openSSL 和 JSON。
+- Windows 10 or Linux
+- Visual Studio or GCC
 
-（四）项目特点
-- 使用openSSL进行加密，支持多种级别的加密
-- 简单易用、结构清晰
+## Steps
 
-部署
-开始部署之前，确保你的电脑上安装了 protobuf、openSSL 和 JSON。
+1. Clone the project to local `git clone https://github.com/io-ing/shieldlink.git`
 
-在客户端和服务端源码目录中使用下面的命令编译客户端和服务端
+2. Enter the project directory `cd shieldlink`
+
+3. Compile the project
+
+   1. ```
+      cd ServerSeckey/ServerSeckey
+      g++ *.cpp *.cc -ljson -lprotobuf -lcrypto -std=c++11
+      ```
+
+   2. ```
+      cd ClientSecKey/ClientSecKey
+      g++ *.cpp *.cc -ljson -lprotobuf -lcrypto -std=c++11
+      ```
+
+4. Run the project
+
+# Usage
+
+## Client
+
+Copy configuration file, edit configuration file, run the client program, Follow the prompts.
+
 ```
-# 编译服务端
-g++ *.cpp *.cc -ljson -lprotobuf -lcrypto -std=c++11
-
-# 编译客户端
-g++ *.cpp *.cc -ljson -lprotobuf -lcrypto -std=c++11
-
-# 编译外联接口
-g++ -c *.cpp -fpic -std=c++11
-# 生成动态库
-g++ -shared *.o -o libinterface.so
-# 配置动态库环境
-cp libInterface.so /usr/lib
-echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib >> ∼/.bashrc
-. ~/.bashrc
+$ cp client.json ClientSecKey/ClientSecKey
+$ cd ClientSecKey/ClientSecKey
+$ vim client.json
+$ ./shieldlink_client
+  /=============================================================/
+  /=============================================================/
+  /*     1.seckeyAgree                                         */
+  /*     2.seckeyCheck                                         */
+  /*     3.seckeyLogoff                                        */
+  /*     0.exit                                                */
+  /=============================================================/
+  /=============================================================/
 ```
 
-（十一）鸣谢
-protobuf、openssl
+## Server
 
-（十二）版权信息
-Mozilla
+Copy configuration file, edit configuration file, run the server program, then wait for client connection and message.
 
+```
+$ cp server.json ServerSeckey/ServerSeckey
+$ cd ServerSeckey/ServerSeckey
+$ vim server.json
+$ ./shieldlink_server
+```
+
+# Advanced
+
+Provide interfaces for third-party programs.
+
+1. Compile the Interface
+
+   1. ```
+      cd Interface\Interface
+      g++ -c *.cpp -fpic -std=c++11
+      g++ -shared *.o -o libinterface.so
+      cp libInterface.so /usr/lib
+      echo export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib >> ∼/.bashrc
+      . ~/.bashrc
+      ```
+
+2. Run the Test program
+
+   1. ```
+      cd socket-test\TcpServer\TcpServer
+      ./TcpServer
+      ```
+
+   2. ```
+      cd socket-test\TcpClient\TcpClient
+      ./TcpClient
+      ```
+
+# License
+
+This project is licensed under the Mozilla Public License 2.0. See [LICENSE](LICENSE) file for more information.
+
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
